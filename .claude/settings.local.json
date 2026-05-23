@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open /Users/foto-galaxy-meran/Desktop/claude-workspace-vorlage/scripts/telegram-instagram-bot/.env)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 bot.py)",
+      "Bash(python3 -m pip install -r /Users/foto-galaxy-meran/Desktop/claude-workspace-vorlage/scripts/telegram-instagram-bot/requirements.txt)",
+      "Bash(python3 -m venv venv)",
+      "Bash(venv/bin/pip install *)",
+      "Bash(launchctl list *)",
+      "Bash(brew install *)",
+      "Bash(railway --version)"
+    ]
+  }
+}
