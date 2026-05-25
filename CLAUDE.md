@@ -122,6 +122,22 @@ Um diesen Workspace an deine eigenen Bedürfnisse anzupassen, fülle deine Konte
 
 ---
 
+## Commands
+
+### /email-agent
+
+**Zweck:** Automatischer E-Mail-Agent — liest, kategorisiert und beantwortet Kunden-E-Mails.
+
+Verarbeitet alle ungelesenen E-Mails in mastenluisalfonso.academy@gmail.com:
+- **Kündigung / Login** → Sofort auto-antworten
+- **ARIA / Webinar** → Entwurf erstellen (manuelle Prüfung)
+- **Unbekannt** → Entwurf mit [PRÜFEN] im Betreff
+- **Newsletter / System-Mails** → Ignorieren
+
+Erfordert den Gmail MCP Server (eingerichtet in `.mcp.json`).
+
+---
+
 ## Scripts
 
 ### telegram-instagram-bot
@@ -141,6 +157,29 @@ python bot.py
 ```
 
 **Bot-Commands:** `/start`, `/check` (manuell), `/status`
+
+### telegram-google-bot
+
+**Pfad:** `scripts/telegram-google-bot/`
+
+Telegram-Bot verbunden mit Google Calendar und Gmail.
+
+**Bot-Commands:** `/heute`, `/woche`, `/mails`, `/dringend`
+
+### gmail-mcp
+
+**Pfad:** `scripts/gmail-mcp/`
+
+Gmail MCP Server — stellt Claude Code Gmail-Tools bereit.
+Konfiguriert via `.mcp.json` im Workspace-Root.
+
+**Tools:** `list_unread_emails`, `get_email`, `create_draft`, `send_reply`, `mark_as_read`
+
+```bash
+cd scripts/gmail-mcp
+python3 -m venv venv
+venv/bin/pip install -r requirements.txt
+```
 
 ---
 

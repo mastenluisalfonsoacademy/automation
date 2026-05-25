@@ -1,0 +1,26 @@
+# Credentials & Secrets
+.env
+token.json
+*.json.secret
+credentials.json
+
+# MCP config (enthält API-Schlüssel)
+.mcp.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# Logs
+logs/
+*.log
+
+# macOS
+.DS_Store
+
+# Claude local settings
+.claude/settings.local.json
