@@ -7,8 +7,9 @@ import httpx
 
 logger = logging.getLogger(__name__)
 
-STATE_FILE = Path("data/state.json")
-STATE_FILE.parent.mkdir(exist_ok=True)
+DATA_DIR = Path(os.getenv("DATA_DIR", "data"))
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+STATE_FILE = DATA_DIR / "state.json"
 
 APIFY_TOKEN = os.getenv("APIFY_TOKEN")
 APIFY_URL = "https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items"
