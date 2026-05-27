@@ -30,6 +30,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def esc(text: str) -> str:
+    """Escaped HTML-Sonderzeichen für sicheres Telegram-HTML."""
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 async def main():
     logger.info("Instagram-Check gestartet...")
     bot = Bot(token=TELEGRAM_TOKEN)
@@ -41,22 +46,21 @@ async def main():
             continue
         found_any = True
 
-        lines = [f"📸 *Neue Beiträge von @{account}*\n"]
+        lines = [f"📸 <b>Neue Beiträge von @{esc(account)}</b>\n"]
         for post in posts:
             icon = "🎥" if post["is_video"] else "🖼"
-            lines.append(f"{icon} _{post['date']}_")
+            lines.append(f"{icon} <i>{esc(post['date'])}</i>")
             if post["caption"]:
                 preview = post["caption"][:150]
                 if len(post["caption"]) > 150:
                     preview += "…"
-                preview = preview.replace("*", "\\*").replace("_", "\\_").replace("`", "\\`")
-                lines.append(preview)
+                lines.append(esc(preview))
             lines.append(f"🔗 {post['url']}\n")
 
         await bot.send_message(
             chat_id=TELEGRAM_CHAT_ID,
             text="\n".join(lines),
-            parse_mode="Markdown",
+            parse_mode="HTML",
             disable_web_page_preview=False,
         )
         logger.info(f"@{account}: Nachricht gesendet ({len(posts)} Beitrag/Beiträge)")
